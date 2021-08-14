@@ -9,7 +9,6 @@ click==7.1.2
 csscompressor==0.9.5
 cycler==0.10.0
 discord.py==1.6.0
-FFmpeg==4.4.0
 Flask==1.1.2
 google-images-download==2.8.0
 htmlmin==0.1.12
