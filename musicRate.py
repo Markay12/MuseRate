@@ -20,6 +20,8 @@ class musicRate(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+        self.polls = []
+
         # all the music related stuff
         self.is_playing = False
 
