@@ -5,6 +5,8 @@ from discord.utils import get
 from discord import FFmpegPCMAudio
 from discord.voice_client import VoiceClient
 
+discord.opus.load_opus() #load the opus module for music
+
 from youtube_dl import YoutubeDL
 
 
