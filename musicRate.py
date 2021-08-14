@@ -136,7 +136,7 @@ class musicRate(commands.Cog):
 
         if self.vc != "" and self.vc:
 
-            self.vc.disconnect()
+            await self.vc.disconnect()
 
     @commands.command(name="rate", help="Help out by rating the song so we know how good the server thinks it is!")
     async def rate(self, ctx, *options):
