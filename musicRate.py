@@ -89,7 +89,7 @@ class musicRate(commands.Cog):
             if type(song) == type(True):
                 await ctx.send("Could not download the song. Incorrect format try another keyword. This could be due to playlist or a livestream format.")
             else:
-                await ctx.send("Song added to the queue")
+                await ctx.send("Song added to the queue! Make sure to use the command '//rate' to give this song a rating!")
                 self.music_queue.append([song, voice_channel])
 
                 if self.is_playing == False:
@@ -137,7 +137,6 @@ class musicRate(commands.Cog):
             self.vc.disconnect()
 
     @commands.command(name="rate", help="Help out by rating the song so we know how good the server thinks it is!")
-
     async def rate(self, ctx):
 
         await ctx.channel.send(f"{ctx.author.mention} wants to rate this song! Give it a score!")
