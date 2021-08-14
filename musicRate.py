@@ -140,3 +140,17 @@ class musicRate(commands.Cog):
     async def rate(self, ctx):
 
         await ctx.channel.send(f"{ctx.author.mention} wants to rate this song! Give it a score!")
+
+        self.ctx = ctx
+        #emoji's 1-10
+        self.emoji = ['1\u20e3', '2\u20e3', '3\u20e3', '4\u20e3', '5\u20e3',
+                      '6\u20e3', '7\u20e3', '8\u20e3', '9\u20e3', '\U0001F51F']
+
+        with open('..//scheduler.json', 'r') as scheduler_file:
+            scheduler_data = json.load(scheduler_file)
+
+        if str(ctx.message.channel.id) is not in scheduler_data:
+
+            polls = [('\u200b',
+                              '\n'.join([f'{self.emoji[index]} \n' for index]),
+                              False)]
