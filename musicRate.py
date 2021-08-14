@@ -26,8 +26,6 @@ class musicRate(commands.Cog):
 
         self.vc = ""
 
-        if not opus.is_loaded():
-            opus.load_opus(config['opus_library_path'])
 
      # searching the item on youtube
     def search_yt(self, item):
