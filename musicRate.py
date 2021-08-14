@@ -26,6 +26,7 @@ class musicRate(commands.Cog):
 
         self.vc = ""
 
+        discord.opus.load_opus
 
      # searching the item on youtube
     def search_yt(self, item):
