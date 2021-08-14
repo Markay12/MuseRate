@@ -151,7 +151,7 @@ class musicRate(commands.Cog):
         self.emoji = ['1\u20e3', '2\u20e3', '3\u20e3', '4\u20e3', '5\u20e3',
                       '6\u20e3', '7\u20e3', '8\u20e3', '9\u20e3', '\U0001F51F']
 
-        options = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        options = ("This is Music?", "Yeah... no", "If I'm forced to", "Wouldn't play alone", "Meh.. not bad", "Okay", "This is kinda nice", "I like it!", "Dang! Where'd you find this!", "*__GODLIKE__*")
 
         embed = Embed(title="Poll", 
                       description = "Rate this song on a scale of 1-10!",
