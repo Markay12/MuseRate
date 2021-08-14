@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 
+from datetime import datetime, timedelta
 from discord.utils import get
 from discord import FFmpegPCMAudio
 from discord.voice_client import VoiceClient
@@ -137,7 +138,7 @@ class musicRate(commands.Cog):
             self.vc.disconnect()
 
     @commands.command(name="rate", help="Help out by rating the song so we know how good the server thinks it is!")
-    async def rate(self, ctx):
+    async def rate(self, ctx, *options):
 
         await ctx.channel.send(f"{ctx.author.mention} wants to rate this song! Give it a score!")
 
@@ -146,11 +147,26 @@ class musicRate(commands.Cog):
         self.emoji = ['1\u20e3', '2\u20e3', '3\u20e3', '4\u20e3', '5\u20e3',
                       '6\u20e3', '7\u20e3', '8\u20e3', '9\u20e3', '\U0001F51F']
 
-        with open('../scheduler.json', 'r') as scheduler_file:
-            scheduler_data = json.load(scheduler_file)
+        options = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
-        if str(ctx.message.channel.id) is not in scheduler_data:
+        embed = Embed(title="Poll", 
+                      description = "Rate this song on a scale of 1-10!",
+                      color = ctx.author.color,
+                      timestamp = datetime.utcnow())
 
-            polls = [('\u200b',
-                              '\n'.join([f'{self.emoji[index]} \n' for index]),
-                              False)]
+        fields = [("Options", "\n".join([f"{numbers[idx]} {option}" for idx, option in enumerate(options)]), False),
+					  ("Instructions", "React to cast a vote!", False)]
+
+        for name, value, inline in fields:
+            embed.add_field(name = name, value = value, inline = inline)
+
+        message = await ctx.send(embed = embed)
+
+        for emoji in numbers[:len(options)]:
+
+            await message.add_reaction(emoji)
+
+        self.polls.append((message.channel.id, message.id))
+
+        self.bot.scheduler.add_job(self.complete_poll, "date", run_date=datetime.now()+timedelta(seconds=hours),
+									   args=[message.channel.id, message.id])
