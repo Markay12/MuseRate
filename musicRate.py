@@ -144,8 +144,6 @@ class musicRate(commands.Cog):
     @commands.command(name="rate", help="Help out by rating the song so we know how good the server thinks it is!")
     async def rate(self, ctx, *options):
 
-        await ctx.channel.send(f"{ctx.author.mention} wants to rate this song! Give it a score!")
-
         self.ctx = ctx
         #emoji's 1-10
         self.emoji = ['1\u20e3', '2\u20e3', '3\u20e3', '4\u20e3', '5\u20e3',
@@ -153,8 +151,8 @@ class musicRate(commands.Cog):
 
         options = ("This is Music?", "Yeah... no", "If I'm forced to", "Wouldn't play alone", "Meh.. not bad", "Okay", "This is kinda nice", "I like it!", "Dang! Where'd you find this!", "*__GODLIKE__*")
 
-        embed = Embed(title="Poll", 
-                      description = "Rate this song on a scale of 1-10!",
+        embed = Embed(title=(f"{ctx.author.mention} wants to rate this song!"), 
+                      description = "Give it your best score out of 10!",
                       color = ctx.author.color,
                       timestamp = datetime.utcnow())
 
