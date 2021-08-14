@@ -146,7 +146,7 @@ class musicRate(commands.Cog):
         self.emoji = ['1\u20e3', '2\u20e3', '3\u20e3', '4\u20e3', '5\u20e3',
                       '6\u20e3', '7\u20e3', '8\u20e3', '9\u20e3', '\U0001F51F']
 
-        with open('..//scheduler.json', 'r') as scheduler_file:
+        with open('../scheduler.json', 'r') as scheduler_file:
             scheduler_data = json.load(scheduler_file)
 
         if str(ctx.message.channel.id) is not in scheduler_data:
