@@ -11,6 +11,7 @@ from youtube_dl import YoutubeDL
 
 class musicRate(commands.Cog):
 
+
     def __init__(self, bot):
         self.bot = bot
 
@@ -24,6 +25,9 @@ class musicRate(commands.Cog):
             'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
         self.vc = ""
+
+        if not opus.is_loaded():
+            opus.load_opus(config['opus_library_path'])
 
      # searching the item on youtube
     def search_yt(self, item):
