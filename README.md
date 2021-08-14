@@ -25,3 +25,5 @@ This bot was deployed through Heroku. Heroku is a cloud platform supporting many
 
 Heroku allows this application to be hosted 24/7 without using a local server for better uptime  
 
+![HerokuLogo](/assets/images/HerokuLogo.png)
+
