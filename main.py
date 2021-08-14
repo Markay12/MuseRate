@@ -10,4 +10,4 @@ client = commands.Bot(command_prefix='!', intents=discord.Intents.all())
 client.add_cog(musicRate(client))
 
 
-client.run(os.environ['TOKEN'])
+client.run(os.getenv['TOKEN'])
