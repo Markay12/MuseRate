@@ -95,6 +95,8 @@ class musicRate(commands.Cog):
                 if self.is_playing == False:
                     await self.play_music()
 
+                #code to vote on the music or function
+
     @commands.command(name="queue", help="Displays the current songs in queue")
     async def queue(self, ctx):
         retval = ""
