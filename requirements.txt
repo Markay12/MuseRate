@@ -24,6 +24,7 @@ more-itertools==8.6.0
 multidict==5.1.0
 mysql-connector-python==8.0.23
 numpy==1.19.5
+opuslib==3.0.1
 pandas==1.2.1
 Pillow==8.1.0
 protobuf==3.15.6
