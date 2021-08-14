@@ -129,9 +129,15 @@ class musicRate(commands.Cog):
 
             self.vc.resume()
 
-    @commands.command(name="disc", help="Disconnect from channel")
-    async def disc(self, ctx):
+    @commands.command(name="disconnect", help="Disconnect from channel")
+    async def disconnect(self, ctx):
 
         if self.vc != "" and self.vc:
 
             self.vc.disconnect()
+
+    @commands.command(name="rate", help="Help out by rating the song so we know how good the server thinks it is!")
+
+    async def rate(self, ctx):
+
+        await ctx.channel.send(f"{ctx.author.mention} wants to rate this song! Give it a score!")
