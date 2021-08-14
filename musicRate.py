@@ -126,3 +126,10 @@ class musicRate(commands.Cog):
         if self.vc != "" and self.vc:
 
             self.vc.resume()
+
+    @commands.command(name="disc", help="Disconnect from channel")
+    async def disc(self, ctx):
+
+        if self.vc != "" and self.vc:
+
+            self.vc.disconnect()
