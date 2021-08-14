@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from discord.utils import get
 from discord import FFmpegPCMAudio
 from discord.voice_client import VoiceClient
+from discord import Embed
 
 
 from youtube_dl import YoutubeDL
