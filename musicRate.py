@@ -174,3 +174,14 @@ class musicRate(commands.Cog):
 
         self.bot.scheduler.add_job(self.complete_poll, "date", run_date=datetime.now()+timedelta(seconds=hours),
 									   args=[message.channel.id, message.id])
+
+    async def complete_poll(self, channel_id, message_id):
+
+        message = await self.bot.get_channel(channel_id).fetch_message(message_id)
+
+        most_voted = max(message.reactions, key=lambda r: r.count)
+
+        await message.channel.send(f"This song has been rated a {most_voted.emoji} by the crowd!")
+        self.polls.remove((message.channel.id, message.id))
+
+        
