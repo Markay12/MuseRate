@@ -11,11 +11,10 @@ from discord import Embed
 from youtube_dl import YoutubeDL
 
 numbers = ("1️⃣", "2⃣", "3⃣", "4⃣", "5⃣",
-		   "6⃣", "7⃣", "8⃣", "9⃣", "🔟")
+           "6⃣", "7⃣", "8⃣", "9⃣", "🔟")
 
 
 class musicRate(commands.Cog):
-
 
     def __init__(self, bot):
         self.bot = bot
@@ -33,8 +32,8 @@ class musicRate(commands.Cog):
 
         self.vc = ""
 
-
      # searching the item on youtube
+
     def search_yt(self, item):
         with YoutubeDL(self.YDL_OPTIONS) as ydl:
             try:
@@ -102,7 +101,7 @@ class musicRate(commands.Cog):
                 if self.is_playing == False:
                     await self.play_music()
 
-                #code to vote on the music or function
+                # code to vote on the music or function
 
     @commands.command(name="queue", help="Displays the current songs in queue")
     async def queue(self, ctx):
@@ -147,33 +146,37 @@ class musicRate(commands.Cog):
     async def rate(self, ctx, *options):
 
         self.ctx = ctx
-        #emoji's 1-10
+        # emoji's 1-10
         self.emoji = ['1\u20e3', '2\u20e3', '3\u20e3', '4\u20e3', '5\u20e3',
                       '6\u20e3', '7\u20e3', '8\u20e3', '9\u20e3', '\U0001F51F']
 
-        options = ("This is Music?", "Yeah... no", "If I'm forced to", "Wouldn't play alone", "Meh.. not bad", "Okay", "This is kinda nice", "I like it!", "Dang! Where'd you find this!", "*__GODLIKE__*")
+        options = ("This is Music?", "Yeah... no", "If I'm forced to", "Wouldn't play alone", "Meh.. not bad",
+                   "Okay", "This is kinda nice", "I like it!", "Dang! Where'd you find this!", "*__GODLIKE__*")
 
-        embed = Embed(title=(f"{ctx.author.mention} wants to rate this song!"), 
-                      description = "Give it your best score out of 10!",
-                      color = ctx.author.color,
-                      timestamp = datetime.utcnow())
+        embed = Embed(title=(f"{ctx.author.mention} wants to rate this song!"),
+                      description="Give it your best score out of 10!",
+                      color=ctx.author.color,
+                      timestamp=datetime.utcnow())
 
         fields = [("Options", "\n".join([f"{numbers[idx]} {option}" for idx, option in enumerate(options)]), False),
-					  ("Instructions", "React to cast a vote!", False)]
+                  ("Instructions", "React to cast a vote!", False)]
 
         for name, value, inline in fields:
-            embed.add_field(name = name, value = value, inline = inline)
+            embed.add_field(name=name, value=value, inline=inline)
 
-        message = await ctx.send(embed = embed)
+        message = await ctx.send(embed=embed)
 
         for emoji in numbers[:len(options)]:
 
             await message.add_reaction(emoji)
 
+        # variable for length of poll
+        mins = 5
+
         self.polls.append((message.channel.id, message.id))
 
-        self.bot.scheduler.add_job(self.complete_poll, "date", run_date=datetime.now()+timedelta(seconds=hours),
-									   args=[message.channel.id, message.id])
+        self.bot.scheduler.add_job(self.complete_poll, "date", run_date=datetime.now()+timedelta(seconds=mins),
+                                   args=[message.channel.id, message.id])
 
     async def complete_poll(self, channel_id, message_id):
 
@@ -183,5 +186,3 @@ class musicRate(commands.Cog):
 
         await message.channel.send(f"This song has been rated a {most_voted.emoji} by the crowd!")
         self.polls.remove((message.channel.id, message.id))
-
-        
