@@ -153,7 +153,10 @@ class musicRate(commands.Cog):
         options = ("This is Music?", "Yeah... no", "If I'm forced to", "Wouldn't play alone", "Meh.. not bad",
                    "Okay", "This is kinda nice", "I like it!", "Dang! Where'd you find this!", "*__GODLIKE__*")
 
-        embed = Embed(title=(f"{ctx.author.mention} wants to rate this song!"),
+
+        author_name = ctx.author.mention
+
+        embed = Embed(title=(author_name + " wants to rate this song!"),
                       description="Give it your best score out of 10!",
                       color=ctx.author.color,
                       timestamp=datetime.utcnow())
